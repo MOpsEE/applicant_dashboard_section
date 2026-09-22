@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0B67CE",
+              dark: "#111827",
+              light: "#F9FAFB",
+              border: "#E5E7EB",
+              success: "#22C55E",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --brand: #0b67ce;
+        --brand-soft: #eff6ff;
+        --ink: #111827;
+        --line: #e5e7eb;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      .max-w-7xl {
+        max-width: 90rem !important;
+      }
+      .max-w-6xl {
+        max-width: 82.5rem !important;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.88) !important;
+        backdrop-filter: blur(16px);
+      }
+      h1,
+      h2 {
+        letter-spacing: -0.045em;
+      }
+      h1 {
+        max-width: 10ch;
+      }
+
+      button,
+      input,
+      a {
+        transition: 0.2s ease !important;
+      }
+      .icon-field {
+        position: relative;
+      }
+      .icon-field > i {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        color: var(--brand);
+        pointer-events: none;
+      }
+      .icon-field input {
+        width: 100%;
+        padding-left: 2.8rem;
+      }
+      .category-icon {
+        width: 1.15rem;
+        margin-right: 0.65rem;
+        color: var(--brand);
+        text-align: center;
+      }
+      input {
+        background: #fcfcfc;
+      }
+      input:hover {
+        border-color: #cbd5e1;
+        background: #fff;
+      }
+      input:focus {
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(11, 103, 206, 0.13);
+      }
+      button:hover,
+      a.bg-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(11, 103, 206, 0.22);
+      }
+
+      /* Hero */
+      section:first-of-type {
+        background: linear-gradient(
+          135deg,
+          #f4f8ff 0%,
+          #fff 54%,
+          #f8fbff 100%
+        ) !important;
+      }
+      section:first-of-type > div {
+        position: relative;
+      }
+      section:first-of-type::after {
+        content: "";
+        position: absolute;
+        width: 34rem;
+        height: 34rem;
+        border-radius: 9999px;
+        right: -13rem;
+        top: -16rem;
+        background: rgba(11, 103, 206, 0.07);
+      }
+      section:first-of-type .shadow-lg {
+        border: 1px solid rgba(229, 231, 235, 0.9);
+        box-shadow: 0 18px 45px rgba(17, 24, 39, 0.09);
+      }
+      section:first-of-type .shadow-xl {
+        border: 1px solid rgba(229, 231, 235, 0.9);
+        box-shadow: 0 28px 60px rgba(17, 24, 39, 0.12);
+      }
+      section:first-of-type .space-y-4 > div {
+        border-color: #eef0f2;
+        transition: 0.22s ease;
+      }
+      section:first-of-type .space-y-4 > div:hover {
+        transform: translateX(5px);
+        border-color: rgba(11, 103, 206, 0.32);
+        box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+      }
+
+      /* Transition from hero to categories */
+      section:nth-of-type(2) {
+        background:
+          radial-gradient(
+            ellipse 62% 10rem at 50% 0,
+            rgba(219, 234, 254, 0.9),
+            rgba(255, 255, 255, 0) 72%
+          ),
+          #fff;
+      }
+      section:nth-of-type(2) > div {
+        position: relative;
+        z-index: 1;
+      }
+      section:nth-of-type(2)::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1px;
+        height: 2.25rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 103, 206, 0.4),
+          rgba(11, 103, 206, 0)
+        );
+      }
+      section:nth-of-type(2)::after {
+        content: "\f107";
+        position: absolute;
+        top: 1.75rem;
+        left: 50%;
+        display: flex;
+        height: 2.25rem;
+        width: 2.25rem;
+        transform: translateX(-50%);
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(11, 103, 206, 0.16);
+        border-radius: 9999px;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(11, 103, 206, 0.1);
+        color: var(--brand);
+        font-family: "Font Awesome 6 Free";
+        font-size: 0.75rem;
+        font-weight: 900;
+      }
+
+      /* Reusable card treatment */
+      section.py-20 {
+        position: relative;
+      }
+      section.py-20 .border.rounded-2xl,
+      section.py-20 .border.rounded-3xl,
+      section.bg-light .bg-white {
+        border-color: #eef0f2;
+        box-shadow: 0 1px 2px rgba(17, 24, 39, 0.02);
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          border-color 0.24s ease;
+      }
+      section.py-20 .border.rounded-2xl:hover,
+      section.py-20 .border.rounded-3xl:hover,
+      section.bg-light .bg-white:hover {
+        transform: translateY(-5px);
+        border-color: rgba(11, 103, 206, 0.24);
+        box-shadow: 0 18px 36px rgba(17, 24, 39, 0.09);
+      }
+      section.bg-light {
+        background: #f8f9fa !important;
+      }
+
+      /* Statistic and CTA panels */
+      section.bg-primary {
+        background: linear-gradient(
+          115deg,
+          #0759b5,
+          #0b67ce 55%,
+          #247ddd
+        ) !important;
+      }
+      section.bg-primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.16;
+        pointer-events: none;
+        background-image: radial-gradient(#fff 1px, transparent 1px);
+        background-size: 18px 18px;
+      }
+      section.bg-primary > div {
+        position: relative;
+        z-index: 1;
+      }
+      .max-w-6xl .bg-primary {
+        box-shadow: 0 24px 50px rgba(11, 103, 206, 0.25);
+      }
+      footer {
+        background: var(--ink) !important;
+      }
+
+      @media (max-width: 640px) {
+        h1 {
+          font-size: 2.75rem !important;
+        }
+        h2 {
+          font-size: 2rem !important;
+        }
+        section:first-of-type > div {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:first-of-type .flex.gap-8.mt-10 {
+          gap: 1rem;
+        }
+        section:first-of-type .flex.gap-8.mt-10 > div {
+          min-width: 0;
+        }
+        section:nth-of-type(2) {
+          background:
+            radial-gradient(
+              ellipse 100% 8rem at 50% 0,
+              rgba(219, 234, 254, 0.82),
+              rgba(255, 255, 255, 0) 72%
+            ),
+            #fff;
+        }
+        .max-w-6xl .bg-primary {
+          padding: 2.5rem 1.5rem !important;
+        }
+      }
+    </style>
+  
+<title>Политика конфиденциальности — InJob</title>
+
+</head>
+<body class="bg-white text-gray-800 font-sans">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center gap-3">
+            <div
+              class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-blue-500/25"
+            >
+              <i class="fa-solid fa-briefcase text-lg" aria-hidden="true"></i>
+              <span
+                class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-white text-[8px] text-primary"
+                ><i class="fa-solid fa-check" aria-hidden="true"></i
+              ></span>
+            </div>
+            <span class="text-2xl font-extrabold tracking-tight text-dark"
+              >InJob</span
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center gap-8">
+            <a href="vacancies.html" class="hover:text-primary transition">Вакансии</a>
+            <a href="companies.html" class="hover:text-primary transition">Компании</a>
+            <a href="blog.html" class="hover:text-primary transition">Блог</a>
+            <a href="pricing.html" class="hover:text-primary transition">Тарифы</a>
+          </nav>
+
+          <div class="hidden lg:flex items-center gap-4">
+            <a href="login.html" class="font-medium hover:text-primary transition">
+              Вход
+            </a>
+
+            <a
+              href="register.html"
+              class="bg-primary text-white px-5 py-3 rounded-xl font-medium hover:opacity-90 transition"
+            >
+              Регистрация
+            </a>
+          </div>
+
+          <button
+            type="button"
+            aria-label="Открыть меню"
+            class="lg:hidden p-2 rounded-lg hover:bg-blue-50 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+<main>
+  <section class="bg-gradient-to-b from-blue-50 to-white border-b border-blue-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <span class="inline-flex rounded-full bg-blue-100 text-primary px-4 py-2 text-sm font-semibold">Документы</span>
+      <h1 class="text-4xl lg:text-5xl font-black text-dark mt-5">Политика конфиденциальности</h1>
+      <p class="text-gray-600 mt-4 max-w-3xl">Информация о том, какие данные используются платформой InJob и для каких целей.</p>
+    </div>
+  </section>
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article class="bg-white border rounded-3xl p-6 sm:p-10 prose prose-gray max-w-none">
+        <p class="text-sm text-gray-500">Версия документа: 18 сентября 2026 года</p>
+        <h2 class="text-2xl font-bold mt-8">1. Общие положения</h2>
+        <p>InJob использует предоставленные пользователем данные для работы сервисов поиска вакансий, публикации профиля и взаимодействия соискателей с компаниями.</p>
+        <h2 class="text-2xl font-bold mt-8">2. Какие данные могут предоставляться</h2>
+        <p>Это могут быть имя, город, контактные данные, сведения об опыте работы, образовании, проектах и навыках, а также информация, необходимая для регистрации аккаунта.</p>
+        <h2 class="text-2xl font-bold mt-8">3. Использование данных</h2>
+        <p>Данные используются для формирования профиля и внутреннего CV, поиска подходящих вакансий, обработки статичных форм на этапе дизайна и отображения информации в соответствующих разделах платформы.</p>
+        <h2 class="text-2xl font-bold mt-8">4. Безопасность и контроль</h2>
+        <p>На этапе HTML-вёрстки реальные процессы хранения, авторизации и обработки данных не реализованы. Пользовательские формы являются демонстрационными.</p>
+        <h2 class="text-2xl font-bold mt-8">5. Контакты</h2>
+        <p>По вопросам документа обратитесь через страницу <a href="contacts.html" class="text-primary font-semibold hover:underline">контактов</a>.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-dark text-white py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid gap-10 md:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-3">
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white"
+                ><i class="fa-solid fa-briefcase" aria-hidden="true"></i
+              ></span>
+              <h3 class="text-xl font-extrabold tracking-tight">InJob</h3>
+            </div>
+            <p class="mt-5 max-w-xs leading-relaxed text-gray-400">
+              Находите работу и сильных специалистов в одном месте.
+            </p>
+            <div class="mt-6 flex gap-3">
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+              ></a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+              ></a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Соискателям</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="vacancies.html" class="block hover:text-white">Вакансии</a>
+              <a href="companies.html" class="block hover:text-white">Компании</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Компаниям</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="pricing.html" class="block hover:text-white">Тарифы</a>
+              <a href="#" class="block hover:text-white">Разместить вакансию</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Поддержка</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="contacts.html" class="block hover:text-white">Контакты</a>
+              <a href="privacy.html" class="block hover:text-white">Политика</a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 flex flex-col gap-3 border-t border-gray-700 pt-8 text-sm text-gray-400 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <span>© 2026 InJob. Все права защищены.</span>
+          <span class="flex items-center gap-2"
+            ><i
+              class="fa-solid fa-shield-halved text-primary"
+              aria-hidden="true"
+            ></i
+            >Безопасный поиск работы</span
+          >
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

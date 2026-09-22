@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0B67CE",
+              dark: "#111827",
+              light: "#F9FAFB",
+              border: "#E5E7EB",
+              success: "#22C55E",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --brand: #0b67ce;
+        --brand-soft: #eff6ff;
+        --ink: #111827;
+        --line: #e5e7eb;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      .max-w-7xl {
+        max-width: 90rem !important;
+      }
+      .max-w-6xl {
+        max-width: 82.5rem !important;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.88) !important;
+        backdrop-filter: blur(16px);
+      }
+      h1,
+      h2 {
+        letter-spacing: -0.045em;
+      }
+      h1 {
+        max-width: 10ch;
+      }
+
+      button,
+      input,
+      a {
+        transition: 0.2s ease !important;
+      }
+      .icon-field {
+        position: relative;
+      }
+      .icon-field > i {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        color: var(--brand);
+        pointer-events: none;
+      }
+      .icon-field input {
+        width: 100%;
+        padding-left: 2.8rem;
+      }
+      .category-icon {
+        width: 1.15rem;
+        margin-right: 0.65rem;
+        color: var(--brand);
+        text-align: center;
+      }
+      input {
+        background: #fcfcfc;
+      }
+      input:hover {
+        border-color: #cbd5e1;
+        background: #fff;
+      }
+      input:focus {
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(11, 103, 206, 0.13);
+      }
+      button:hover,
+      a.bg-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(11, 103, 206, 0.22);
+      }
+
+      /* Hero */
+      section:first-of-type {
+        background: linear-gradient(
+          135deg,
+          #f4f8ff 0%,
+          #fff 54%,
+          #f8fbff 100%
+        ) !important;
+      }
+      section:first-of-type > div {
+        position: relative;
+      }
+      section:first-of-type::after {
+        content: "";
+        position: absolute;
+        width: 34rem;
+        height: 34rem;
+        border-radius: 9999px;
+        right: -13rem;
+        top: -16rem;
+        background: rgba(11, 103, 206, 0.07);
+      }
+      section:first-of-type .shadow-lg {
+        border: 1px solid rgba(229, 231, 235, 0.9);
+        box-shadow: 0 18px 45px rgba(17, 24, 39, 0.09);
+      }
+      section:first-of-type .shadow-xl {
+        border: 1px solid rgba(229, 231, 235, 0.9);
+        box-shadow: 0 28px 60px rgba(17, 24, 39, 0.12);
+      }
+      section:first-of-type .space-y-4 > div {
+        border-color: #eef0f2;
+        transition: 0.22s ease;
+      }
+      section:first-of-type .space-y-4 > div:hover {
+        transform: translateX(5px);
+        border-color: rgba(11, 103, 206, 0.32);
+        box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+      }
+
+      /* Transition from hero to categories */
+      section:nth-of-type(2) {
+        background:
+          radial-gradient(
+            ellipse 62% 10rem at 50% 0,
+            rgba(219, 234, 254, 0.9),
+            rgba(255, 255, 255, 0) 72%
+          ),
+          #fff;
+      }
+      section:nth-of-type(2) > div {
+        position: relative;
+        z-index: 1;
+      }
+      section:nth-of-type(2)::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1px;
+        height: 2.25rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 103, 206, 0.4),
+          rgba(11, 103, 206, 0)
+        );
+      }
+      section:nth-of-type(2)::after {
+        content: "\f107";
+        position: absolute;
+        top: 1.75rem;
+        left: 50%;
+        display: flex;
+        height: 2.25rem;
+        width: 2.25rem;
+        transform: translateX(-50%);
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(11, 103, 206, 0.16);
+        border-radius: 9999px;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(11, 103, 206, 0.1);
+        color: var(--brand);
+        font-family: "Font Awesome 6 Free";
+        font-size: 0.75rem;
+        font-weight: 900;
+      }
+
+      /* Reusable card treatment */
+      section.py-20 {
+        position: relative;
+      }
+      section.py-20 .border.rounded-2xl,
+      section.py-20 .border.rounded-3xl,
+      section.bg-light .bg-white {
+        border-color: #eef0f2;
+        box-shadow: 0 1px 2px rgba(17, 24, 39, 0.02);
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          border-color 0.24s ease;
+      }
+      section.py-20 .border.rounded-2xl:hover,
+      section.py-20 .border.rounded-3xl:hover,
+      section.bg-light .bg-white:hover {
+        transform: translateY(-5px);
+        border-color: rgba(11, 103, 206, 0.24);
+        box-shadow: 0 18px 36px rgba(17, 24, 39, 0.09);
+      }
+      section.bg-light {
+        background: #f8f9fa !important;
+      }
+
+      /* Statistic and CTA panels */
+      section.bg-primary {
+        background: linear-gradient(
+          115deg,
+          #0759b5,
+          #0b67ce 55%,
+          #247ddd
+        ) !important;
+      }
+      section.bg-primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.16;
+        pointer-events: none;
+        background-image: radial-gradient(#fff 1px, transparent 1px);
+        background-size: 18px 18px;
+      }
+      section.bg-primary > div {
+        position: relative;
+        z-index: 1;
+      }
+      .max-w-6xl .bg-primary {
+        box-shadow: 0 24px 50px rgba(11, 103, 206, 0.25);
+      }
+      footer {
+        background: var(--ink) !important;
+      }
+
+      /* Модальное окно: открывается/закрывается через ссылку на #id, без JS */
+      .modal-overlay {
+        display: none !important;
+      }
+      .modal-overlay:target {
+        display: flex !important;
+      }
+
+      @media (max-width: 640px) {
+        h1 {
+          font-size: 2.75rem !important;
+        }
+        h2 {
+          font-size: 2rem !important;
+        }
+        section:first-of-type > div {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:first-of-type .flex.gap-8.mt-10 {
+          gap: 1rem;
+        }
+        section:first-of-type .flex.gap-8.mt-10 > div {
+          min-width: 0;
+        }
+        section:nth-of-type(2) {
+          background:
+            radial-gradient(
+              ellipse 100% 8rem at 50% 0,
+              rgba(219, 234, 254, 0.82),
+              rgba(255, 255, 255, 0) 72%
+            ),
+            #fff;
+        }
+        .max-w-6xl .bg-primary {
+          padding: 2.5rem 1.5rem !important;
+        }
+      }
+    </style>
+  
+<title>Опыт работы — InJob</title>
+
+</head>
+<body class="bg-white text-gray-800 font-sans">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center gap-3">
+            <div
+              class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-blue-500/25"
+            >
+              <i class="fa-solid fa-briefcase text-lg" aria-hidden="true"></i>
+              <span
+                class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-white text-[8px] text-primary"
+                ><i class="fa-solid fa-check" aria-hidden="true"></i
+              ></span>
+            </div>
+            <span class="text-2xl font-extrabold tracking-tight text-dark"
+              >InJob</span
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center gap-8">
+            <a href="vacancies.html" class="hover:text-primary transition">Вакансии</a>
+            <a href="companies.html" class="hover:text-primary transition">Компании</a>
+            <a href="blog.html" class="hover:text-primary transition">Блог</a>
+            <a href="pricing.html" class="hover:text-primary transition">Тарифы</a>
+          </nav>
+
+          <div class="hidden lg:flex items-center gap-4">
+            <a href="login.html" class="font-medium hover:text-primary transition">
+              Вход
+            </a>
+
+            <a
+              href="register.html"
+              class="bg-primary text-white px-5 py-3 rounded-xl font-medium hover:opacity-90 transition"
+            >
+              Регистрация
+            </a>
+          </div>
+
+          <button
+            type="button"
+            aria-label="Открыть меню"
+            class="lg:hidden p-2 rounded-lg hover:bg-blue-50 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+<main>
+  <section class="bg-gradient-to-b from-blue-50 to-white border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+      <span class="inline-flex rounded-full bg-blue-100 text-primary px-4 py-2 text-sm font-semibold">Профиль</span>
+      <h1 class="text-4xl lg:text-5xl font-black text-dark mt-5">Опыт работы</h1>
+      <p class="text-gray-600 mt-3 max-w-2xl">Добавляй и редактируй опыт работы для своего внутреннего CV.</p>
+    </div>
+  </section>
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-8">
+        
+<aside class="lg:col-span-3">
+  <div class="lg:sticky lg:top-28">
+    <details class="lg:hidden mb-4 bg-white border border-gray-200 rounded-2xl shadow-sm" open>
+      <summary class="cursor-pointer list-none p-4 font-semibold flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded-2xl">
+        Меню кабинета <i class="fa-solid fa-chevron-down text-primary" aria-hidden="true"></i>
+      </summary>
+      <div class="px-3 pb-3">
+        <nav aria-label="Навигация кабинета соискателя" class="space-y-1">
+          <a href="candidate-dashboard.html" class="flex items-center gap-3 rounded-xl bg-blue-50 text-primary px-3 py-3 font-semibold"><i class="fa-solid fa-chart-line w-5 text-center"></i>Дашборд</a>
+          <a href="candidate-profile.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-user w-5 text-center"></i>Личные данные</a>
+          <a href="candidate-experience.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-briefcase w-5 text-center"></i>Опыт работы</a>
+          <a href="candidate-portfolio.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-layer-group w-5 text-center"></i>Проекты / портфолио</a>
+          <a href="candidate-education.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-graduation-cap w-5 text-center"></i>Образование</a>
+          <a href="candidate-skills.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-tags w-5 text-center"></i>Навыки</a>
+          <a href="candidate-cv.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-file-lines w-5 text-center"></i>Моё CV</a>
+          <a href="candidate-applications.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-paper-plane w-5 text-center"></i>Мои отклики</a>
+          <a href="candidate-favorites.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-heart w-5 text-center"></i>Избранное</a>
+          <a href="candidate-settings.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-gear w-5 text-center"></i>Настройки</a>
+          <a href="candidate-notifications.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-bell w-5 text-center"></i>Уведомления</a>
+        </nav>
+      </div>
+    </details>
+
+    <div class="hidden lg:block bg-white border border-gray-200 rounded-2xl p-3 shadow-sm">
+      <div class="px-3 py-3 mb-2">
+        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">Кабинет соискателя</p>
+        <p class="font-bold text-dark mt-1">Александр Иванов</p>
+      </div>
+      <nav aria-label="Навигация кабинета соискателя" class="space-y-1">
+        <a href="candidate-dashboard.html" class="flex items-center gap-3 rounded-xl bg-blue-50 text-primary px-3 py-3 font-semibold"><i class="fa-solid fa-chart-line w-5 text-center"></i>Дашборд</a>
+        <a href="candidate-profile.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-user w-5 text-center"></i>Личные данные</a>
+        <a href="candidate-experience.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-briefcase w-5 text-center"></i>Опыт работы</a>
+        <a href="candidate-portfolio.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-layer-group w-5 text-center"></i>Проекты / портфолио</a>
+        <a href="candidate-education.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-graduation-cap w-5 text-center"></i>Образование</a>
+        <a href="candidate-skills.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-tags w-5 text-center"></i>Навыки</a>
+        <a href="candidate-cv.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-file-lines w-5 text-center"></i>Моё CV</a>
+        <a href="candidate-applications.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-paper-plane w-5 text-center"></i>Мои отклики</a>
+        <a href="candidate-favorites.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-heart w-5 text-center"></i>Избранное</a>
+        <a href="candidate-settings.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-solid fa-gear w-5 text-center"></i>Настройки</a>
+        <a href="candidate-notifications.html" class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-blue-50 hover:text-primary focus:bg-blue-50 focus:text-primary"><i class="fa-regular fa-bell w-5 text-center"></i>Уведомления</a>
+      </nav>
+    </div>
+  </div>
+</aside>
+
+        <div class="lg:col-span-9"><div class="bg-white border rounded-3xl p-6 sm:p-8">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"><div><h2 class="text-2xl font-bold">Опыт работы</h2><p class="text-gray-500 mt-1">Добавь места работы, должности и ключевые достижения.</p></div><a href="#experience-form" class="inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-3 rounded-xl font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"><i class="fa-solid fa-plus"></i>Добавить</a></div>
+<div class="space-y-4 mt-7">
+  <article class="border rounded-2xl p-5"><div class="flex flex-col sm:flex-row sm:justify-between gap-3"><div><h3 class="font-bold text-lg">Frontend Developer</h3><p class="text-primary font-medium mt-1">Endava</p></div><span class="text-sm text-gray-500">2023 — настоящее время</span></div><p class="text-gray-600 mt-4">Разработка интерфейсов на React, работа с дизайн-системой и адаптивной вёрсткой.</p><div class="flex gap-2 mt-4"><a href="#experience-form" class="text-primary font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">Редактировать</a><a href="#delete-experience" class="text-gray-500 font-semibold hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-primary rounded">Удалить</a></div></article>
+  <article class="border rounded-2xl p-5"><div class="flex flex-col sm:flex-row sm:justify-between gap-3"><div><h3 class="font-bold text-lg">Junior Web Developer</h3><p class="text-primary font-medium mt-1">Local Studio</p></div><span class="text-sm text-gray-500">2021 — 2023</span></div><p class="text-gray-600 mt-4">Вёрстка корпоративных сайтов и поддержка UI-компонентов.</p><div class="flex gap-2 mt-4"><a href="#experience-form" class="text-primary font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">Редактировать</a><a href="#delete-experience" class="text-gray-500 font-semibold hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-primary rounded">Удалить</a></div></article>
+</div>
+
+<!-- Модалка: форма добавления/редактирования -->
+<div id="experience-form" class="modal-overlay fixed inset-0 z-50 items-center justify-center bg-gray-900/50 p-4">
+  <div class="w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+    <a href="candidate-experience.html" aria-label="Закрыть окно" class="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary"><i class="fa-solid fa-xmark"></i></a>
+    <h2 class="text-xl font-bold text-dark">Место работы</h2>
+    <p class="text-gray-500 mt-1 text-sm">Заполни данные о должности и обязанностях.</p>
+    <form class="grid gap-4 mt-6">
+      <div><label for="exp-role" class="block text-sm font-semibold mb-2">Должность</label><input id="exp-role" value="Frontend Developer" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"></div>
+      <div><label for="exp-company" class="block text-sm font-semibold mb-2">Компания</label><input id="exp-company" value="Endava" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"></div>
+      <div class="grid grid-cols-2 gap-4">
+        <div><label for="exp-start" class="block text-sm font-semibold mb-2">Начало</label><input id="exp-start" type="month" value="2023-01" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"></div>
+        <div><label for="exp-end" class="block text-sm font-semibold mb-2">Окончание</label><input id="exp-end" type="month" placeholder="По наст. время" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"></div>
+      </div>
+      <div><label for="exp-desc" class="block text-sm font-semibold mb-2">Описание обязанностей</label><textarea id="exp-desc" rows="4" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1">Разработка интерфейсов на React, работа с дизайн-системой и адаптивной вёрсткой.</textarea></div>
+      <div class="flex flex-wrap justify-end gap-3 mt-2">
+        <a href="candidate-experience.html" class="px-5 py-3 rounded-xl border border-gray-300 font-semibold hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary">Отмена</a>
+        <button type="button" class="bg-primary text-white px-5 py-3 rounded-xl font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Модалка: подтверждение удаления -->
+<div id="delete-experience" class="modal-overlay fixed inset-0 z-50 items-center justify-center bg-gray-900/50 p-4">
+  <div class="w-full max-w-sm bg-white rounded-3xl p-6 sm:p-8 text-center">
+    <div class="mx-auto h-14 w-14 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center text-2xl"><i class="fa-solid fa-trash"></i></div>
+    <h2 class="text-xl font-bold text-dark mt-5">Удалить запись?</h2>
+    <p class="text-gray-500 mt-2">Это действие нельзя будет отменить.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-3 mt-7">
+      <a href="candidate-experience.html" class="px-5 py-3 rounded-xl border border-gray-300 font-semibold hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary">Отмена</a>
+      <button type="button" class="bg-red-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Удалить</button>
+    </div>
+  </div>
+</div>
+</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-dark text-white py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid gap-10 md:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-3">
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white"
+                ><i class="fa-solid fa-briefcase" aria-hidden="true"></i
+              ></span>
+              <h3 class="text-xl font-extrabold tracking-tight">InJob</h3>
+            </div>
+            <p class="mt-5 max-w-xs leading-relaxed text-gray-400">
+              Находите работу и сильных специалистов в одном месте.
+            </p>
+            <div class="mt-6 flex gap-3">
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+              ></a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+              ></a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-gray-300 hover:bg-primary hover:text-white"
+                ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Соискателям</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="vacancies.html" class="block hover:text-white">Вакансии</a>
+              <a href="companies.html" class="block hover:text-white">Компании</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Компаниям</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="pricing.html" class="block hover:text-white">Тарифы</a>
+              <a href="#" class="block hover:text-white">Разместить вакансию</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Поддержка</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="contacts.html" class="block hover:text-white">Контакты</a>
+              <a href="privacy.html" class="block hover:text-white">Политика</a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 flex flex-col gap-3 border-t border-gray-700 pt-8 text-sm text-gray-400 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <span>© 2026 InJob. Все права защищены.</span>
+          <span class="flex items-center gap-2"
+            ><i
+              class="fa-solid fa-shield-halved text-primary"
+              aria-hidden="true"
+            ></i
+            >Безопасный поиск работы</span
+          >
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
