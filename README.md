@@ -1,1 +1,0 @@
-# applicant_dashboard_section
